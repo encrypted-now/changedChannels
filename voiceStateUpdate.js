@@ -6,28 +6,26 @@
 
   const category = ['', '', '', '','']
   
-  const nameOld = oldStates.channel.name;
-  const nameNew = newStates.channel.name;
   const newChannel = newStates.channel;
   const oldChannel = oldStates.channel;
   
   //Here is the member's entry on the channel
   if (oldChannel == null && newChannel !== null && category.includes(newChannel.parentID)) {
     
-    console.log(`Member joined channel ${nameNew}`)
+    console.log(`Member joined channel ${newChannel.name}`)
     changedChannel(newStates, true, 1)
   
   //Here is the member switch between channels
   } else if(oldChannel !== null && newChannel !== null && category.includes(newChannel.parentID)) {
 
-    console.log(`Member changed ${nameOld} for ${nameNew}`)
+    console.log(`Member changed ${oldChannel.name} for ${newChannel.name}`)
     changedChannel(newStates, true, 1)
     changedChannel(oldStates, false, 0)
 
   //Here is the output of the channel member
   } else if (oldChannel !== null && newChannel == null && category.includes(oldChannel.parentID)) {
   
-    console.log(`Member left the ${nameOld}`)
+    console.log(`Member left the ${oldChannel.name}`)
     changedChannel(oldStates, false, 0)
   }
 
